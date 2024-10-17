@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Slider </title>
+    <style>
+        h1{
+            text-align: center;
+        }
+        span{
+            color: red;
+        }
+        .container {
+            width: 100%;
+            height: 50%;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        #imageTag {
+            width: 100%;
+            height: 100%;
+        }
+
+        .button-container {
+            position: relative;
+            width: 200px;
+            margin: 0 auto;
+        }
+
+        .prev, .next {
+            position: absolute;
+            top: 0%;
+            
+            /* transform: translateY(-50%); */
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .prev {
+            left: -50px; /* Move Previous button to the left */
+        }
+
+        .next {
+            right: -50px; /* Move Next button to the right */
+        }
+    </style>
+    <script>
+        var elm;
+        var links = ["11.jpg", "22.jpg", "33.jpg"];
+        var count = 0;
+
+        window.onload = function () {
+            elm = document.getElementById("imageTag");
+            elm.setAttribute("src", links[count]); // First image set on load
+        }
+
+        function nextImage() {
+            count++;
+            if (count > 2) { // Reset to the first image if we go beyond the last image
+                count = 0;
+            }
+            elm.setAttribute("src", links[count]);
+        }
+
+        function prevImage() {
+            count--;
+            if (count < 0) { // Go to the last image if we go before the first image
+                count = links.length - 1;
+            }
+            elm.setAttribute("src", links[count]);
+        }
+
+        // Automatically change images every 2 seconds (optional, you can remove this if you want manual control only)
+        setInterval(nextImage, 2000);
+    </script>
+</head>
+<body>
+    <h1 >Image Slider using <span>javaScript</span> </h1>
+
+    <div class="container">
+        <img src="" id="imageTag">
+    </div>
+
+    <div class="button-container">
+        <button class="prev" onclick="prevImage()">Previous</button>
+        <button class="next" onclick="nextImage()">Next</button>
+    </div>
+</body>
+</html>
